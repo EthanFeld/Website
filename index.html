@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ethan Feld - Applied Physics Student at NYU | Quantum Computing Researcher | Data Science Enthusiast - Portfolio showcasing quantum ML, NMR research, and data analysis projects">
+    <meta name="keywords" content="quantum computing, machine learning, data science, NMR research, applied physics, Qiskit, TensorFlow">
+    <meta name="author" content="Ethan Feld">
+    <title>Ethan Feld - Applied Physics Student &amp; Quantum Computing Researcher</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='50'%3EEF%3C/text%3E%3C/svg%3E">
+    <style>
+      :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  /* Common style patterns */
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+
+  /* RGB versions for opacity control */
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: var(--font-size-base);
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: var(--line-height-normal);
+  overflow-x: hidden;
+}
+
+/* Custom quantum-themed colors */
+:root {
+  --quantum-purple: #8B5CF6;
+  --quantum-blue: #3B82F6;
+  --quantum-cyan: var(--color-teal-300);
+  --quantum-dark: #1e1b4b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --quantum-purple: #A78BFA;
+    --quantum-blue: #60A5FA;
+  }
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(var(--color-slate-900-rgb), 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: var(--space-16) 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav {
+    background: rgba(var(--color-charcoal-800), 0.95);
+  }
+}
+
+.nav-container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--quantum-cyan);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav-logo-icon {
+  font-size: var(--font-size-3xl);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-32);
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--color-gray-200);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--duration-fast) var(--ease-standard);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--quantum-cyan);
+  transition: width var(--duration-normal) var(--ease-standard);
+}
+
+.nav-link:hover {
+  color: var(--quantum-cyan);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-gray-200);
+  font-size: var(--font-size-3xl);
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-32) var(--space-24);
+  background: linear-gradient(135deg, var(--color-slate-900) 0%, var(--quantum-dark) 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero {
+    background: linear-gradient(135deg, var(--color-charcoal-800) 0%, var(--quantum-dark) 100%);
+  }
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-content {
+  max-width: var(--container-lg);
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  margin-bottom: var(--space-16);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-2xl);
+  color: var(--quantum-cyan);
+  margin-bottom: var(--space-16);
+  font-weight: var(--font-weight-medium);
+}
+
+.hero-tagline {
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-300);
+  margin-bottom: var(--space-32);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  display: flex;
+  gap: var(--space-16);
+  justify-content: center;
+  margin-bottom: var(--space-32);
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  padding: var(--space-16) var(--space-32);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--duration-normal) var(--ease-standard);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.cta-primary {
+  background: var(--quantum-cyan);
+  color: var(--color-slate-900);
+  border: 2px solid var(--quantum-cyan);
+}
+
+.cta-primary:hover {
+  background: transparent;
+  color: var(--quantum-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(50, 184, 198, 0.3);
+}
+
+.cta-secondary {
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+}
+
+.cta-secondary:hover {
+  background: var(--color-white);
+  color: var(--color-slate-900);
+  transform: translateY(-2px);
+}
+
+.hero-contact {
+  display: flex;
+  gap: var(--space-24);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  color: var(--color-gray-300);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  transition: color var(--duration-fast) var(--ease-standard);
+  font-size: var(--font-size-base);
+}
+
+.contact-link:hover {
+  color: var(--quantum-cyan);
+}
+
+/* Expertise Section */
+.expertise {
+  padding: 80px var(--space-24);
+  background: var(--color-background);
+}
+
+.section-title {
+  text-align: center;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-16);
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expertise-grid {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-24);
+}
+
+.expertise-card {
+  background: var(--color-surface);
+  padding: var(--space-32);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  transition: all var(--duration-normal) var(--ease-standard);
+  text-align: center;
+}
+
+.expertise-card:nth-child(1) { background: var(--color-bg-1); }
+.expertise-card:nth-child(2) { background: var(--color-bg-5); }
+.expertise-card:nth-child(3) { background: var(--color-bg-8); }
+.expertise-card:nth-child(4) { background: var(--color-bg-3); }
+.expertise-card:nth-child(5) { background: var(--color-bg-6); }
+.expertise-card:nth-child(6) { background: var(--color-bg-2); }
+
+.expertise-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.expertise-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-16);
+}
+
+.expertise-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-8);
+}
+
+/* Projects Section */
+.projects {
+  padding: 80px var(--space-24);
+  background: var(--color-surface);
+}
+
+.projects-filter {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-12);
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: var(--space-10) var(--space-20);
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-primary);
+}
+
+.projects-grid {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-32);
+}
+
+.project-card {
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-standard);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.project-header {
+  padding: var(--space-24);
+  background: var(--color-bg-1);
+}
+
+.project-card:nth-child(2) .project-header { background: var(--color-bg-2); }
+.project-card:nth-child(3) .project-header { background: var(--color-bg-3); }
+.project-card:nth-child(4) .project-header { background: var(--color-bg-4); }
+.project-card:nth-child(5) .project-header { background: var(--color-bg-5); }
+.project-card:nth-child(6) .project-header { background: var(--color-bg-6); }
+
+.project-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-12);
+}
+
+.project-body {
+  padding: var(--space-24);
+  flex-grow: 1;
+}
+
+.project-description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-20);
+  line-height: 1.6;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-bottom: var(--space-20);
+}
+
+.tech-tag {
+  padding: var(--space-4) var(--space-12);
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid var(--color-border);
+}
+
+.project-footer {
+  padding: var(--space-24);
+  padding-top: 0;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-10) var(--space-20);
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  text-decoration: none;
+  border-radius: var(--radius-base);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.project-link:hover {
+  background: var(--color-primary-hover);
+  transform: translateX(4px);
+}
+
+/* Resume Section */
+.resume {
+  padding: 80px var(--space-24);
+  background: var(--color-background);
+}
+
+.resume-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.resume-download {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-16) var(--space-32);
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.download-button:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(33, 128, 141, 0.3);
+}
+
+.resume-section {
+  background: var(--color-surface);
+  padding: var(--space-32);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  margin-bottom: var(--space-32);
+}
+
+.resume-section-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-24);
+  padding-bottom: var(--space-12);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.resume-item {
+  margin-bottom: var(--space-24);
+}
+
+.resume-item:last-child {
+  margin-bottom: 0;
+}
+
+.resume-item-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-8);
+}
+
+.resume-item-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
+  margin-bottom: var(--space-8);
+}
+
+.resume-item-description {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-16);
+}
+
+.skill-category {
+  background: var(--color-bg-1);
+  padding: var(--space-16);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border);
+}
+
+.skill-category:nth-child(2) { background: var(--color-bg-2); }
+.skill-category:nth-child(3) { background: var(--color-bg-3); }
+.skill-category:nth-child(4) { background: var(--color-bg-4); }
+
+.skill-category-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-12);
+}
+
+.skill-list {
+  list-style: none;
+}
+
+.skill-list li {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+  padding-left: var(--space-16);
+  position: relative;
+}
+
+.skill-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+}
+
+/* Footer */
+.footer {
+  background: var(--color-slate-900);
+  color: var(--color-gray-300);
+  padding: 60px var(--space-24) var(--space-32);
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background: var(--color-charcoal-800);
+  }
+}
+
+.footer-content {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-32);
+  margin-bottom: var(--space-24);
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: var(--color-gray-300);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer-link:hover {
+  color: var(--quantum-cyan);
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-20);
+  margin-bottom: var(--space-24);
+}
+
+.social-icon {
+  color: var(--color-gray-300);
+  font-size: var(--font-size-2xl);
+  transition: all var(--duration-fast) var(--ease-standard);
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  color: var(--quantum-cyan);
+  transform: translateY(-4px);
+}
+
+.footer-copyright {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-8);
+}
+
+.footer-tagline {
+  color: var(--quantum-cyan);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(var(--color-slate-900-rgb), 0.98);
+    flex-direction: column;
+    padding: var(--space-24);
+    gap: var(--space-16);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .nav-links {
+      background: rgba(var(--color-charcoal-800), 0.98);
+    }
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-xl);
+  }
+
+  .hero-tagline {
+    font-size: var(--font-size-base);
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Particle Background */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: var(--quantum-cyan);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-gray-300);
+  font-size: var(--font-size-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  opacity: 0.7;
+}
+
+.scroll-arrow {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="nav-logo-icon">⚛</span>
+                <span>EF</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#expertise" class="nav-link">Expertise</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Business Card) -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="particles" id="particles"></div>
+        </div>
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-title">Ethan Feld</h1>
+            <h2 class="hero-subtitle">Applied Physics Student | Quantum Computing Researcher | Data Science Enthusiast</h2>
+            <p class="hero-tagline">NYU Applied Physics student specializing in quantum computing, NMR research, and machine learning. Pioneering novel approaches to quantum algorithm optimization and data analysis.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-24); max-width: 600px; margin: 0 auto var(--space-32) auto;">
+                <div style="text-align: center;">
+                    <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--quantum-cyan);">3.85</div>
+                    <div style="font-size: var(--font-size-sm); color: var(--color-gray-300); margin-top: var(--space-4);">GPA</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--quantum-cyan);">100x</div>
+                    <div style="font-size: var(--font-size-sm); color: var(--color-gray-300); margin-top: var(--space-4);">NMR Improvement</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--quantum-cyan);">99%</div>
+                    <div style="font-size: var(--font-size-sm); color: var(--color-gray-300); margin-top: var(--space-4);">ML Accuracy</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--quantum-cyan);">$100</div>
+                    <div style="font-size: var(--font-size-sm); color: var(--color-gray-300); margin-top: var(--space-4);">UnitaryHACK Winner</div>
+                </div>
+            </div>
+            
+            <div class="hero-cta">
+                <a href="#projects" class="cta-button cta-primary">
+                    <span>View Projects</span>
+                    <span>→</span>
+                </a>
+                <a href="#resume" class="cta-button cta-secondary">
+                    <span>Download Resume</span>
+                    <span>↓</span>
+                </a>
+            </div>
+
+            <div class="hero-contact">
+                <a href="mailto:ethan.feld@nyu.edu" class="contact-link">
+                    <span>✉</span>
+                    <span>ethan.feld@nyu.edu</span>
+                </a>
+                <a href="https://github.com/EthanFeld" target="_blank" class="contact-link">
+                    <span>⚙</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://linkedin.com/in/ethanfeld" target="_blank" class="contact-link">
+                    <span>in</span>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <span class="scroll-arrow">↓</span>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="expertise">
+        <h2 class="section-title">Areas of Expertise</h2>
+        <p class="section-subtitle">Specialized research in quantum computing and advanced computational methods</p>
+        
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">⚛️</div>
+                <h3 class="expertise-title">Quantum Computing</h3>
+            </div>
+            
+            <div class="expertise-card">
+                <div class="expertise-icon">🧲</div>
+                <h3 class="expertise-title">NMR Research</h3>
+            </div>
+            
+            <div class="expertise-card">
+                <div class="expertise-icon">📊</div>
+                <h3 class="expertise-title">Data Analysis</h3>
+            </div>
+            
+            <div class="expertise-card">
+                <div class="expertise-icon">🤖</div>
+                <h3 class="expertise-title">Machine Learning</h3>
+            </div>
+            
+            <div class="expertise-card">
+                <div class="expertise-icon">🔬</div>
+                <h3 class="expertise-title">Physics Modeling</h3>
+            </div>
+            
+            <div class="expertise-card">
+                <div class="expertise-icon">📈</div>
+                <h3 class="expertise-title">Data Visualization</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">Research Projects</h2>
+        <p class="section-subtitle">Cutting-edge quantum computing research and implementations</p>
+        
+        <div class="projects-filter">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="Quantum Computing">Quantum Computing</button>
+            <button class="filter-btn" data-filter="Machine Learning">Machine Learning</button>
+            <button class="filter-btn" data-filter="Quantum Physics">Quantum Physics</button>
+            <button class="filter-btn" data-filter="Data Science">Data Science</button>
+            <button class="filter-btn" data-filter="Software Tools">Software Tools</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Projects will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume">
+        <h2 class="section-title">Resume</h2>
+        <p class="section-subtitle">Academic background and professional experience</p>
+        
+        <div class="resume-container">
+            <div class="resume-download">
+                <a href="resume.pdf" class="download-button" download>
+                    <span>📄</span>
+                    <span>Download Full Resume (PDF)</span>
+                </a>
+            </div>
+
+            <div class="resume-section">
+                <h3 class="resume-section-title">Education</h3>
+                <div class="resume-item">
+                    <h4 class="resume-item-title">Bachelor of Science, Applied Physics</h4>
+                    <p class="resume-item-subtitle">New York University | New York, NY | 08/2023 - Present</p>
+                    <p class="resume-item-description"><strong>GPA: 3.85</strong> | Expected Graduation: May 2027</p>
+                    <p class="resume-item-description"><strong>Honors:</strong> Global Leadership and Sustainability Scholar, Dean's List</p>
+                    <p class="resume-item-description"><strong>Relevant Coursework:</strong> Data Analysis, Analytical Mechanics, Advanced Linear Algebra and Complex Variables, Economic Foundations of Finance</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h3 class="resume-section-title">Experience</h3>
+                <div class="resume-item">
+                    <h4 class="resume-item-title">Researcher</h4>
+                    <p class="resume-item-subtitle">NYUAD Center for Quantum and Topological Systems | Abu Dhabi, UAE | 05/2025 - Present</p>
+                    <p class="resume-item-description">• Designed novel pulse sequence, 100x polarization improvement in NMR<br>• Automated sequence design in MATLAB, 72% time reduction<br>• Utilized Average Hamiltonian Theory for NV-Center modeling</p>
+                </div>
+                <div class="resume-item">
+                    <h4 class="resume-item-title">Engineering Design Intern</h4>
+                    <p class="resume-item-subtitle">Urbz | Mumbai, India | 01/2025 - 05/2025</p>
+                    <p class="resume-item-description">• Designed QR system cutting response time by 90%<br>• Created Tableau dashboard reducing wait time by 30%<br>• Built ETL pipelines ensuring 99.7% uptime</p>
+                </div>
+                <div class="resume-item">
+                    <h4 class="resume-item-title">Data Analyst Intern</h4>
+                    <p class="resume-item-subtitle">FEMA | New York, NY | 07/2024 - 10/2024</p>
+                    <p class="resume-item-description">• Engineered SharePoint to Power BI integration<br>• Improved dashboard formatting, 24% reading time reduction<br>• Increased dashboard usage rate by 50%</p>
+                </div>
+                <div class="resume-item">
+                    <h4 class="resume-item-title">Researcher</h4>
+                    <p class="resume-item-subtitle">NYU Tandon UGSRP | New York, NY | 06/2024 - 08/2024</p>
+                    <p class="resume-item-description">• 110x data collection speed improvement with ETL pipeline<br>• 99.9% accuracy predicting Ramsauer minimum<br>• 98% accuracy in Argon electron distribution<br>• 99% accuracy with Finite Difference PDE solvers</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h3 class="resume-section-title">Leadership</h3>
+                <div class="resume-item">
+                    <h4 class="resume-item-title">Committee Member</h4>
+                    <p class="resume-item-subtitle">New Club Development Program | NYU | 08/2024 - 05/2025</p>
+                    <p class="resume-item-description">• Designed viability process for 64 clubs<br>• Mediated 7 club disputes<br>• Rewrote model constitution for all NYU clubs</p>
+                </div>
+                <div class="resume-item">
+                    <h4 class="resume-item-title">Undergraduate Leader</h4>
+                    <p class="resume-item-subtitle">Design for America | NYU | 08/2023 - 01/2025</p>
+                    <p class="resume-item-description">• Led Ideathon with 100+ participants<br>• Won best club leadership award (150+ clubs)<br>• Gained 80+ new signups, best recruitment season</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h3 class="resume-section-title">Skills &amp; Technologies</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4 class="skill-category-title">Programming</h4>
+                        <ul class="skill-list">
+                            <li>Python</li>
+                            <li>Rust</li>
+                            <li>Git</li>
+                            <li>MATLAB</li>
+                            <li>Java</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4 class="skill-category-title">Quantum &amp; Physics</h4>
+                        <ul class="skill-list">
+                            <li>Qiskit</li>
+                            <li>Quantum Circuit Design</li>
+                            <li>NMR</li>
+                            <li>Hamiltonian Theory</li>
+                            <li>PDE Solvers</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4 class="skill-category-title">Data Tools</h4>
+                        <ul class="skill-list">
+                            <li>Tableau</li>
+                            <li>Power BI</li>
+                            <li>Power Query</li>
+                            <li>TensorFlow</li>
+                            <li>ETL Pipelines</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4 class="skill-category-title">Other</h4>
+                        <ul class="skill-list">
+                            <li>Linear Programming</li>
+                            <li>Machine Learning</li>
+                            <li>Data Visualization</li>
+                            <li>Numerical Methods</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h3 class="resume-section-title">Achievements</h3>
+                <div class="resume-item">
+                    <ul class="skill-list" style="padding-left: 0;">
+                        <li>UnitaryHACK 2024 Winner - $100 bounty</li>
+                        <li>Best Overall Project - UW Data Science Program (400+ applicants)</li>
+                        <li>Best Club Leadership - NYU Engineering (150+ clubs)</li>
+                        <li>Global Leadership and Sustainability Scholar</li>
+                        <li>Dean's List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home" class="footer-link">Home</a>
+                <a href="#expertise" class="footer-link">Expertise</a>
+                <a href="#projects" class="footer-link">Projects</a>
+                <a href="#resume" class="footer-link">Resume</a>
+            </div>
+
+            <div class="footer-social">
+                <a href="mailto:ethan.feld@nyu.edu" class="social-icon" aria-label="Email">✉</a>
+                <a href="https://github.com/EthanFeld" target="_blank" class="social-icon" aria-label="GitHub">⚙</a>
+                <a href="https://linkedin.com/in/ethanfeld" target="_blank" class="social-icon" aria-label="LinkedIn">in</a>
+            </div>
+
+            <p class="footer-copyright">&copy; 2025 Ethan Feld. All rights reserved.</p>
+            <p class="footer-tagline">Built for quantum computing research</p>
+        </div>
+    </footer>
+
+    <script>
+        // Project data
+        const projects = [
+            {
+                title: "JanusQ - Quantum ML Translation Framework",
+                description: "Implemented logic and quantum arithmetic to translate ML models from Keras to quantum oracles in Qiskit. Developed quantum counting variation achieving polynomial speedup. Optimized circuits with relative phase Toffolis, cutting T count by 60%.",
+                technologies: ["Python", "Qiskit", "Quantum Computing", "Machine Learning", "Circuit Optimization"],
+                github: "https://github.com/EthanFeld",
+                category: "Quantum Computing",
+                highlight: "Polynomial Speedup",
+                award: true
+            },
+            {
+                title: "UW Plankton Classifier",
+                description: "Fine-tuned ResNet-50 in TensorFlow achieving 93% accuracy. Implemented FiLM layer utilizing environmental metadata, improving to 99% accuracy. Won best overall project award against 400+ applicants.",
+                technologies: ["Python", "TensorFlow", "ResNet-50", "Deep Learning", "FiLM"],
+                github: "https://github.com/EthanFeld/PlanktonClassifier",
+                category: "Machine Learning",
+                highlight: "Best Project - 99% Accuracy",
+                award: true
+            },
+            {
+                title: "IonWave - NMR Pulse Sequence Designer",
+                description: "Designed novel pulse sequence improving max polarization transfer in NMR by 100x under dipole-dipole interactions. Automated sequence design in MATLAB using linear programming, cutting development time by 72%. Utilized Average Hamiltonian Theory.",
+                technologies: ["MATLAB", "Linear Programming", "NMR", "Quantum Physics", "Hamiltonian Theory"],
+                github: "https://github.com/EthanFeld/IonWave",
+                category: "Quantum Physics",
+                highlight: "100x Improvement",
+                award: false
+            },
+            {
+                title: "HeicToPng Converter",
+                description: "Efficient image conversion tool for HEIC to PNG format with batch processing capabilities. Built for cross-platform compatibility and ease of use.",
+                technologies: ["Python", "Image Processing", "File Conversion"],
+                github: "https://github.com/EthanFeld/HeicToPng",
+                category: "Software Tools",
+                highlight: "Batch Processing",
+                award: false
+            },
+            {
+                title: "Research ETL Pipeline",
+                description: "Improved data collection speed by 110x with ETL pipeline connecting instruments to database in Python. Calculated transmission coefficients predicting Ramsauer minimum to 99.9% accuracy. Implemented Finite Difference PDE solvers.",
+                technologies: ["Python", "ETL", "Data Engineering", "PDE Solvers", "Numerical Methods"],
+                github: "https://github.com/EthanFeld",
+                category: "Data Science",
+                highlight: "110x Speed Increase",
+                award: false
+            },
+            {
+                title: "Interactive Dashboards",
+                description: "Created real-time Tableau/PowerBI dashboards reducing repair wait time by 30%. Engineered data integration from SharePoint to Power BI with scheduled refreshes. Improved formatting reducing reading time by 24%.",
+                technologies: ["Tableau", "Power BI", "Power Query", "Data Visualization", "SharePoint"],
+                github: "https://github.com/EthanFeld",
+                category: "Data Science",
+                highlight: "Real-time Integration",
+                award: false
+            }
+        ];
+
+        // Render projects
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '';
+
+            const filteredProjects = filter === 'all' 
+                ? projects 
+                : projects.filter(p => p.category === filter);
+
+            filteredProjects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <h3 class="project-title">${project.title}${project.award ? ' 🏆' : ''}</h3>
+                        ${project.highlight ? `<div style="margin-top: var(--space-8); padding: var(--space-4) var(--space-12); background: var(--color-primary); color: var(--color-btn-primary-text); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); display: inline-block;">${project.highlight}</div>` : ''}
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tech">
+                            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="${project.github}" target="_blank" class="project-link">
+                            <span>View on GitHub</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderProjects(btn.dataset.filter);
+            });
+        });
+
+        // Mobile navigation
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Particle animation
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s infinite ease-in-out`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% {
+                    transform: translate(0, 0);
+                }
+                25% {
+                    transform: translate(20px, -20px);
+                }
+                50% {
+                    transform: translate(-15px, -40px);
+                }
+                75% {
+                    transform: translate(15px, -20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('.expertise-card, .project-card, .resume-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Initialize
+        createParticles();
+        renderProjects();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
