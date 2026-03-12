@@ -526,7 +526,7 @@ body {
   display: flex;
   justify-content: center;
   gap: var(--space-12);
-  margin-bottom: 60px;
+  margin-bottom: var(--space-32);
   flex-wrap: wrap;
 }
 
@@ -549,22 +549,255 @@ body {
   border-color: var(--color-primary);
 }
 
-.projects-grid {
+.projects-shell {
   max-width: var(--container-xl);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: var(--space-32);
 }
 
-.project-card {
-  background: var(--color-background);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-card-border);
+.breakout-panel {
+  position: relative;
   overflow: hidden;
-  transition: all var(--duration-normal) var(--ease-standard);
+  padding: clamp(24px, 4vw, 36px);
+  border-radius: 28px;
+  border: 1px solid var(--color-card-border);
+  background:
+    radial-gradient(circle at top left, rgba(var(--color-teal-500-rgb), 0.24), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(var(--color-slate-500-rgb), 0.22), transparent 34%),
+    linear-gradient(145deg, rgba(12, 24, 32, 0.98), rgba(8, 16, 22, 0.98));
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.16);
+}
+
+.breakout-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent),
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+  pointer-events: none;
+}
+
+.breakout-meta,
+.breakout-status,
+.breakout-progress,
+.breakout-legend {
+  position: relative;
+  z-index: 1;
+}
+
+.breakout-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-24);
+  margin-bottom: var(--space-24);
+}
+
+.breakout-kicker {
+  margin-bottom: var(--space-8);
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.breakout-title {
+  max-width: 16ch;
+  color: var(--color-white);
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  line-height: 1.05;
+}
+
+.breakout-actions {
+  display: flex;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  min-height: 44px;
+  padding: var(--space-12) var(--space-20);
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.36);
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.96), rgba(18, 189, 161, 0.96));
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard);
+  box-shadow: 0 12px 26px rgba(var(--color-teal-500-rgb), 0.26);
+}
+
+.game-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(var(--color-teal-500-rgb), 0.32);
+}
+
+.game-btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: none;
+}
+
+.game-btn-secondary:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.breakout-status {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-12);
+  margin-bottom: var(--space-20);
+}
+
+.breakout-stat {
   display: flex;
   flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.breakout-stat-label {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.breakout-stat-value {
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.breakout-progress {
+  display: grid;
+  gap: var(--space-12);
+  margin-bottom: var(--space-20);
+}
+
+.breakout-progress-track {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.breakout-progress-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #38bdf8, #14b8a6, #22c55e);
+  transition: width var(--duration-normal) var(--ease-standard);
+}
+
+.breakout-hint {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--font-size-base);
+}
+
+.breakout-canvas-wrap {
+  position: relative;
+  z-index: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(9, 20, 28, 0.98), rgba(4, 12, 17, 0.98));
+}
+
+.breakout-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 7;
+  touch-action: none;
+}
+
+.breakout-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24);
+  background: linear-gradient(180deg, rgba(4, 10, 14, 0.12), rgba(4, 10, 14, 0.56));
+  color: var(--color-white);
+  text-align: center;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.breakout-overlay.is-visible {
+  opacity: 1;
+}
+
+.breakout-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-10);
+  margin-top: var(--space-20);
+}
+
+.breakout-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.84);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.breakout-legend-item.is-revealed {
+  background: rgba(var(--color-teal-500-rgb), 0.18);
+  border-color: rgba(var(--color-teal-500-rgb), 0.4);
+}
+
+.breakout-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-24);
+}
+
+.project-card {
+  position: relative;
+  background: linear-gradient(180deg, var(--color-surface), var(--color-background));
+  border-radius: 24px;
+  border: 1px solid var(--color-card-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  box-shadow: var(--shadow-md);
+  animation: fadeInUp 0.45s ease-out forwards;
 }
 
 .project-card:hover {
@@ -574,20 +807,35 @@ body {
 
 .project-header {
   padding: var(--space-24);
-  background: var(--color-bg-1);
+  background: linear-gradient(135deg, var(--project-accent-soft, var(--color-bg-1)), rgba(255, 255, 255, 0.06));
+  border-bottom: 1px solid var(--color-card-border);
 }
 
-.project-card:nth-child(2) .project-header { background: var(--color-bg-2); }
-.project-card:nth-child(3) .project-header { background: var(--color-bg-3); }
-.project-card:nth-child(4) .project-header { background: var(--color-bg-4); }
-.project-card:nth-child(5) .project-header { background: var(--color-bg-5); }
-.project-card:nth-child(6) .project-header { background: var(--color-bg-6); }
+.project-category {
+  margin-bottom: var(--space-12);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
 .project-title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text);
-  margin-bottom: var(--space-12);
+  line-height: 1.25;
+}
+
+.project-badge {
+  display: inline-flex;
+  margin-top: var(--space-12);
+  padding: var(--space-6) var(--space-12);
+  border-radius: var(--radius-full);
+  background: rgba(var(--color-teal-500-rgb), 0.14);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
 }
 
 .project-body {
@@ -621,6 +869,7 @@ body {
 .project-footer {
   padding: var(--space-24);
   padding-top: 0;
+  margin-top: auto;
 }
 
 .project-link {
@@ -639,6 +888,17 @@ body {
 .project-link:hover {
   background: var(--color-primary-hover);
   transform: translateX(4px);
+}
+
+.project-empty {
+  grid-column: 1 / -1;
+  padding: var(--space-32);
+  border-radius: 24px;
+  border: 1px dashed var(--color-border);
+  background:
+    linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.05), rgba(var(--color-slate-500-rgb), 0.08));
+  color: var(--color-text-secondary);
+  text-align: center;
 }
 
 /* Resume Section */
@@ -871,6 +1131,31 @@ body {
     font-size: var(--font-size-base);
   }
 
+  .breakout-panel {
+    padding: var(--space-20);
+    border-radius: 22px;
+  }
+
+  .breakout-meta {
+    flex-direction: column;
+  }
+
+  .breakout-title {
+    max-width: none;
+  }
+
+  .breakout-actions {
+    width: 100%;
+  }
+
+  .game-btn {
+    flex: 1 1 180px;
+  }
+
+  .breakout-status {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
@@ -1064,8 +1349,56 @@ body {
             <button class="filter-btn" data-filter="Software Tools">Software Tools</button>
         </div>
 
-        <div class="projects-grid" id="projectsGrid">
-            <!-- Projects will be dynamically inserted here -->
+        <div class="projects-shell">
+            <div class="breakout-panel">
+                <div class="breakout-meta">
+                    <div>
+                        <p class="breakout-kicker">Arcade Portfolio</p>
+                        <h3 class="breakout-title">Clear a wall section to unlock the project card behind it.</h3>
+                    </div>
+                    <div class="breakout-actions">
+                        <button type="button" class="game-btn" id="startGameBtn">Start Game</button>
+                        <button type="button" class="game-btn game-btn-secondary" id="resetGameBtn">Reset Round</button>
+                    </div>
+                </div>
+
+                <div class="breakout-status">
+                    <div class="breakout-stat">
+                        <span class="breakout-stat-label">Filter</span>
+                        <strong class="breakout-stat-value" id="gameFilterLabel">All Projects</strong>
+                    </div>
+                    <div class="breakout-stat">
+                        <span class="breakout-stat-label">Lives</span>
+                        <strong class="breakout-stat-value" id="livesValue">3</strong>
+                    </div>
+                    <div class="breakout-stat">
+                        <span class="breakout-stat-label">Score</span>
+                        <strong class="breakout-stat-value" id="scoreValue">0</strong>
+                    </div>
+                    <div class="breakout-stat">
+                        <span class="breakout-stat-label">Revealed</span>
+                        <strong class="breakout-stat-value" id="revealedValue">0 / 0</strong>
+                    </div>
+                </div>
+
+                <div class="breakout-progress">
+                    <div class="breakout-progress-track">
+                        <span class="breakout-progress-fill" id="breakoutProgressFill"></span>
+                    </div>
+                    <p class="breakout-hint" id="gameMessage">Use the mouse, touch, or arrow keys to move the paddle. Click the arena or press Space to launch.</p>
+                </div>
+
+                <div class="breakout-canvas-wrap">
+                    <canvas id="breakoutCanvas" class="breakout-canvas" width="960" height="420" tabindex="0" aria-label="Breakout game"></canvas>
+                    <div class="breakout-overlay is-visible" id="breakoutOverlay">Press Start Game, click the arena, or hit Space to launch the ball.</div>
+                </div>
+
+                <div class="breakout-legend" id="projectLegend"></div>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid" aria-live="polite">
+                <!-- Revealed project cards will be inserted here -->
+            </div>
         </div>
     </section>
 
@@ -1400,6 +1733,729 @@ body {
                 }
             });
         });
+    </script>
+    <script>
+        (() => {
+            const sourceProjects = typeof projects !== 'undefined' ? projects : [];
+            const canvas = document.getElementById('breakoutCanvas');
+            const grid = document.getElementById('projectsGrid');
+            const legend = document.getElementById('projectLegend');
+            const overlay = document.getElementById('breakoutOverlay');
+            const gameMessage = document.getElementById('gameMessage');
+            const startButton = document.getElementById('startGameBtn');
+            const resetButton = document.getElementById('resetGameBtn');
+            const filterLabel = document.getElementById('gameFilterLabel');
+            const livesLabel = document.getElementById('livesValue');
+            const scoreLabel = document.getElementById('scoreValue');
+            const revealedLabel = document.getElementById('revealedValue');
+            const progressFill = document.getElementById('breakoutProgressFill');
+            const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+
+            if (!canvas || !grid || !legend || !overlay || !startButton || !resetButton) {
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            const paletteList = [
+                { accent: "#38bdf8", soft: "rgba(56, 189, 248, 0.18)", glow: "rgba(56, 189, 248, 0.36)" },
+                { accent: "#f59e0b", soft: "rgba(245, 158, 11, 0.2)", glow: "rgba(245, 158, 11, 0.34)" },
+                { accent: "#22c55e", soft: "rgba(34, 197, 94, 0.18)", glow: "rgba(34, 197, 94, 0.34)" },
+                { accent: "#fb7185", soft: "rgba(251, 113, 133, 0.18)", glow: "rgba(251, 113, 133, 0.34)" },
+                { accent: "#a78bfa", soft: "rgba(167, 139, 250, 0.18)", glow: "rgba(167, 139, 250, 0.34)" },
+                { accent: "#f97316", soft: "rgba(249, 115, 22, 0.18)", glow: "rgba(249, 115, 22, 0.34)" }
+            ];
+
+            const arcadeProjects = sourceProjects.map((project, index) => ({
+                id: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+                title: project.title,
+                description: project.description,
+                technologies: Array.isArray(project.technologies) ? project.technologies : [],
+                categories: project.title === 'NMR Pulse Sequence Design'
+                    ? ['Quantum Physics', 'Quantum Computing']
+                    : [project.category].filter(Boolean),
+                highlight: project.highlight || (project.award ? 'Featured Project' : ''),
+                github: project.github || '',
+                palette: paletteList[index % paletteList.length]
+            }));
+
+            const paletteMap = arcadeProjects.reduce((map, project) => {
+                map[project.id] = project.palette;
+                return map;
+            }, {});
+
+            const state = {
+                currentFilter: 'all',
+                filteredProjects: [],
+                bricks: [],
+                sections: new Map(),
+                progress: new Map(),
+                revealed: new Set(),
+                score: 0,
+                lives: 3,
+                running: false,
+                completed: false,
+                paddle: {
+                    width: 148,
+                    height: 14,
+                    x: 0,
+                    y: height - 42,
+                    dx: 0,
+                    speed: 8
+                },
+                ball: {
+                    radius: 8,
+                    x: 0,
+                    y: 0,
+                    vx: 0,
+                    vy: 0,
+                    baseSpeed: 5.6,
+                    stuck: true
+                }
+            };
+
+            function clamp(value, min, max) {
+                return Math.min(Math.max(value, min), max);
+            }
+
+            function escapeHtml(value) {
+                return String(value)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+
+            function getProjectsForFilter(filter) {
+                return filter === 'all'
+                    ? arcadeProjects
+                    : arcadeProjects.filter(project => project.categories.includes(filter));
+            }
+
+            function getProjectAction(project) {
+                if (project.github) {
+                    return {
+                        href: project.github,
+                        label: 'View on GitHub',
+                        extraAttributes: 'target="_blank" rel="noreferrer"'
+                    };
+                }
+
+                return {
+                    href: `mailto:ef2507@nyu.edu?subject=${encodeURIComponent(`Project inquiry: ${project.title}`)}`,
+                    label: 'Ask for details',
+                    extraAttributes: ''
+                };
+            }
+
+            function setOverlay(message, visible) {
+                overlay.textContent = message;
+                overlay.classList.toggle('is-visible', visible);
+            }
+
+            function setMessage(message) {
+                gameMessage.textContent = message;
+            }
+
+            function resetPaddle() {
+                state.paddle.x = (width - state.paddle.width) / 2;
+                state.paddle.dx = 0;
+            }
+
+            function placeBallOnPaddle() {
+                state.ball.x = state.paddle.x + state.paddle.width / 2;
+                state.ball.y = state.paddle.y - state.ball.radius - 2;
+            }
+
+            function resetBall() {
+                state.ball.vx = 0;
+                state.ball.vy = 0;
+                state.ball.stuck = true;
+                placeBallOnPaddle();
+            }
+
+            function buildLevel() {
+                state.bricks = [];
+                state.sections = new Map();
+                state.progress = new Map();
+
+                const sectionColumns = 3;
+                const sectionRows = 3;
+                const brickHeight = 24;
+                const brickGap = 6;
+                const sectionGap = 18;
+                const sectionCount = state.filteredProjects.length;
+                const maxBrickWidth = 88;
+                const minBrickWidth = 42;
+
+                if (!sectionCount) {
+                    return;
+                }
+
+                const availableWidth = width - 112;
+                const widthFromLayout = Math.floor(
+                    (availableWidth - ((sectionCount * (sectionColumns - 1)) * brickGap) - ((sectionCount - 1) * sectionGap)) /
+                    (sectionCount * sectionColumns)
+                );
+                const brickWidth = clamp(widthFromLayout, minBrickWidth, maxBrickWidth);
+                const sectionWidth = (sectionColumns * brickWidth) + ((sectionColumns - 1) * brickGap);
+                const sectionHeight = (sectionRows * brickHeight) + ((sectionRows - 1) * brickGap);
+                const wallWidth = (sectionCount * sectionWidth) + ((sectionCount - 1) * sectionGap);
+                const startX = (width - wallWidth) / 2;
+                const startY = 94;
+
+                state.filteredProjects.forEach((project, index) => {
+                    const sectionX = startX + (index * (sectionWidth + sectionGap));
+                    state.sections.set(project.id, {
+                        x: sectionX,
+                        y: startY,
+                        width: sectionWidth,
+                        height: sectionHeight
+                    });
+
+                    state.progress.set(project.id, {
+                        remaining: sectionColumns * sectionRows,
+                        total: sectionColumns * sectionRows
+                    });
+
+                    for (let row = 0; row < sectionRows; row += 1) {
+                        for (let column = 0; column < sectionColumns; column += 1) {
+                            state.bricks.push({
+                                x: sectionX + (column * (brickWidth + brickGap)),
+                                y: startY + (row * (brickHeight + brickGap)),
+                                width: brickWidth,
+                                height: brickHeight,
+                                projectId: project.id,
+                                broken: false,
+                                palette: paletteMap[project.id]
+                            });
+                        }
+                    }
+                });
+            }
+
+            function updateHud() {
+                filterLabel.textContent = state.currentFilter === 'all' ? 'All Projects' : state.currentFilter;
+                livesLabel.textContent = String(state.lives);
+                scoreLabel.textContent = String(state.score);
+                revealedLabel.textContent = `${state.revealed.size} / ${state.filteredProjects.length}`;
+
+                const percent = state.filteredProjects.length
+                    ? (state.revealed.size / state.filteredProjects.length) * 100
+                    : 0;
+
+                progressFill.style.width = `${percent}%`;
+            }
+
+            function renderLegend() {
+                legend.innerHTML = '';
+
+                state.filteredProjects.forEach(project => {
+                    const item = document.createElement('div');
+                    item.className = 'breakout-legend-item';
+
+                    if (state.revealed.has(project.id)) {
+                        item.classList.add('is-revealed');
+                    }
+
+                    item.innerHTML = `
+                        <span class="breakout-swatch" style="background: ${project.palette.accent};"></span>
+                        <span>${escapeHtml(project.title)}</span>
+                    `;
+                    legend.appendChild(item);
+                });
+            }
+
+            function renderCards() {
+                const visibleProjects = state.filteredProjects.filter(project => state.revealed.has(project.id));
+                grid.innerHTML = '';
+
+                if (!state.filteredProjects.length) {
+                    grid.innerHTML = `
+                        <div class="project-empty">
+                            <p>This filter does not have a project assigned yet. Pick another filter to keep playing.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                if (!visibleProjects.length) {
+                    grid.innerHTML = `
+                        <div class="project-empty">
+                            <p>Project cards appear here as soon as you clear their matching block section above.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                visibleProjects.forEach(project => {
+                    const action = getProjectAction(project);
+                    const card = document.createElement('article');
+
+                    card.className = 'project-card';
+                    card.style.setProperty('--project-accent-soft', project.palette.soft);
+
+                    card.innerHTML = `
+                        <div class="project-header">
+                            <p class="project-category">${escapeHtml(project.categories.join(' / '))}</p>
+                            <h3 class="project-title">${escapeHtml(project.title)}</h3>
+                            ${project.highlight ? `<div class="project-badge">${escapeHtml(project.highlight)}</div>` : ''}
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">${escapeHtml(project.description)}</p>
+                            <div class="project-tech">
+                                ${project.technologies.map(technology => `<span class="tech-tag">${escapeHtml(technology)}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="${escapeHtml(action.href)}" ${action.extraAttributes} class="project-link">
+                                <span>${escapeHtml(action.label)}</span>
+                                <span aria-hidden="true">&gt;</span>
+                            </a>
+                        </div>
+                    `;
+
+                    grid.appendChild(card);
+                });
+            }
+
+            function truncateText(text, maxWidth) {
+                if (ctx.measureText(text).width <= maxWidth) {
+                    return text;
+                }
+
+                let shortened = text;
+
+                while (shortened.length > 3 && ctx.measureText(`${shortened}...`).width > maxWidth) {
+                    shortened = shortened.slice(0, -1);
+                }
+
+                return `${shortened}...`;
+            }
+
+            function drawRoundedRect(x, y, boxWidth, boxHeight, radius) {
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.lineTo(x + boxWidth - radius, y);
+                ctx.quadraticCurveTo(x + boxWidth, y, x + boxWidth, y + radius);
+                ctx.lineTo(x + boxWidth, y + boxHeight - radius);
+                ctx.quadraticCurveTo(x + boxWidth, y + boxHeight, x + boxWidth - radius, y + boxHeight);
+                ctx.lineTo(x + radius, y + boxHeight);
+                ctx.quadraticCurveTo(x, y + boxHeight, x, y + boxHeight - radius);
+                ctx.lineTo(x, y + radius);
+                ctx.quadraticCurveTo(x, y, x + radius, y);
+                ctx.closePath();
+            }
+
+            function drawArena() {
+                const background = ctx.createLinearGradient(0, 0, 0, height);
+                background.addColorStop(0, "#0f172a");
+                background.addColorStop(1, "#020617");
+                ctx.fillStyle = background;
+                ctx.fillRect(0, 0, width, height);
+
+                ctx.strokeStyle = "rgba(148, 163, 184, 0.09)";
+                ctx.lineWidth = 1;
+
+                for (let x = 24; x <= width; x += 48) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, height);
+                    ctx.stroke();
+                }
+
+                for (let y = 24; y <= height; y += 48) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke();
+                }
+
+                ctx.font = "600 12px FKGroteskNeue, Geist, Inter, sans-serif";
+                ctx.textAlign = "center";
+
+                state.filteredProjects.forEach(project => {
+                    const section = state.sections.get(project.id);
+
+                    if (!section) {
+                        return;
+                    }
+
+                    ctx.strokeStyle = state.revealed.has(project.id)
+                        ? project.palette.glow
+                        : "rgba(255, 255, 255, 0.12)";
+                    ctx.lineWidth = 1.5;
+                    drawRoundedRect(section.x - 10, section.y - 12, section.width + 20, section.height + 24, 16);
+                    ctx.stroke();
+
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.78)";
+                    ctx.fillText(truncateText(project.title, section.width + 48), section.x + (section.width / 2), section.y - 24);
+                });
+            }
+
+            function drawBricks() {
+                state.bricks.forEach(brick => {
+                    if (brick.broken) {
+                        return;
+                    }
+
+                    ctx.fillStyle = brick.palette.soft;
+                    ctx.strokeStyle = brick.palette.glow;
+                    ctx.lineWidth = 1.2;
+                    ctx.shadowBlur = 16;
+                    ctx.shadowColor = brick.palette.glow;
+                    drawRoundedRect(brick.x, brick.y, brick.width, brick.height, 8);
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.shadowBlur = 0;
+                });
+            }
+
+            function drawPaddle() {
+                const paddleGradient = ctx.createLinearGradient(state.paddle.x, state.paddle.y, state.paddle.x, state.paddle.y + state.paddle.height);
+                paddleGradient.addColorStop(0, "#f8fafc");
+                paddleGradient.addColorStop(1, "#94a3b8");
+
+                ctx.fillStyle = paddleGradient;
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = "rgba(148, 163, 184, 0.4)";
+                drawRoundedRect(state.paddle.x, state.paddle.y, state.paddle.width, state.paddle.height, 8);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            function drawBall() {
+                const ballGradient = ctx.createRadialGradient(state.ball.x - 2, state.ball.y - 2, 2, state.ball.x, state.ball.y, state.ball.radius);
+                ballGradient.addColorStop(0, "#ffffff");
+                ballGradient.addColorStop(1, "#38bdf8");
+
+                ctx.fillStyle = ballGradient;
+                ctx.shadowBlur = 18;
+                ctx.shadowColor = "rgba(56, 189, 248, 0.56)";
+                ctx.beginPath();
+                ctx.arc(state.ball.x, state.ball.y, state.ball.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            function drawScene() {
+                drawArena();
+                drawBricks();
+                drawPaddle();
+                drawBall();
+            }
+
+            function revealProject(projectId) {
+                if (state.revealed.has(projectId)) {
+                    return;
+                }
+
+                const project = state.filteredProjects.find(item => item.id === projectId);
+                state.revealed.add(projectId);
+                state.score += 250;
+                updateHud();
+                renderLegend();
+                renderCards();
+
+                if (project) {
+                    setMessage(`${project.title} unlocked. Clear another section to reveal the next card.`);
+                }
+
+                if (state.revealed.size === state.filteredProjects.length) {
+                    state.running = false;
+                    state.completed = true;
+                    resetBall();
+                    setOverlay('All projects in this filter are unlocked. Press Start Game to replay the round.', true);
+                    setMessage('Round cleared. Change filters or restart the round to play again.');
+                }
+            }
+
+            function resetRound() {
+                state.filteredProjects = getProjectsForFilter(state.currentFilter);
+                state.revealed = new Set();
+                state.score = 0;
+                state.lives = 3;
+                state.running = false;
+                state.completed = false;
+
+                resetPaddle();
+                buildLevel();
+                resetBall();
+                renderLegend();
+                renderCards();
+                updateHud();
+
+                if (!state.filteredProjects.length) {
+                    setOverlay('No projects match this filter yet. Pick another filter to keep playing.', true);
+                    setMessage('This category does not have an arcade wall yet.');
+                    return;
+                }
+
+                setOverlay('Press Start Game, click the arena, or hit Space to launch the ball.', true);
+                setMessage('Break a full color section to reveal the project card linked to it.');
+            }
+
+            function setFilter(filter) {
+                state.currentFilter = filter;
+                resetRound();
+            }
+
+            function launchBall() {
+                if (!state.filteredProjects.length || state.running || !state.ball.stuck) {
+                    return;
+                }
+
+                state.ball.stuck = false;
+                state.running = true;
+
+                const horizontalDrift = (Math.random() * 2.4) - 1.2;
+                state.ball.vx = horizontalDrift;
+                state.ball.vy = -Math.sqrt(Math.max(1, Math.pow(state.ball.baseSpeed, 2) - Math.pow(horizontalDrift, 2)));
+
+                setOverlay('', false);
+                setMessage('Hit every brick in a section to unlock its project card.');
+            }
+
+            function loseLife() {
+                state.lives -= 1;
+                state.running = false;
+                updateHud();
+
+                if (state.lives <= 0) {
+                    state.completed = true;
+                    resetBall();
+                    setOverlay('Game over. Press Start Game to try this filter again.', true);
+                    setMessage('Game over. Reset the round or relaunch to try again.');
+                    return;
+                }
+
+                resetBall();
+                setOverlay('Life lost. Click the arena, hit Space, or press Start Game to relaunch.', true);
+                setMessage('Life lost. Relaunch the ball to keep your revealed cards.');
+            }
+
+            function syncPaddle(clientX) {
+                const bounds = canvas.getBoundingClientRect();
+                const relativeX = ((clientX - bounds.left) / bounds.width) * width;
+
+                state.paddle.x = clamp(
+                    relativeX - (state.paddle.width / 2),
+                    16,
+                    width - state.paddle.width - 16
+                );
+
+                if (state.ball.stuck) {
+                    placeBallOnPaddle();
+                }
+            }
+
+            function intersectsBrick(ball, brick) {
+                const closestX = clamp(ball.x, brick.x, brick.x + brick.width);
+                const closestY = clamp(ball.y, brick.y, brick.y + brick.height);
+                const distanceX = ball.x - closestX;
+                const distanceY = ball.y - closestY;
+
+                return (distanceX * distanceX) + (distanceY * distanceY) <= ball.radius * ball.radius;
+            }
+
+            function handleBrickCollision() {
+                for (const brick of state.bricks) {
+                    if (brick.broken || !intersectsBrick(state.ball, brick)) {
+                        continue;
+                    }
+
+                    brick.broken = true;
+                    state.score += 50;
+
+                    const overlapLeft = Math.abs((state.ball.x + state.ball.radius) - brick.x);
+                    const overlapRight = Math.abs((brick.x + brick.width) - (state.ball.x - state.ball.radius));
+                    const overlapTop = Math.abs((state.ball.y + state.ball.radius) - brick.y);
+                    const overlapBottom = Math.abs((brick.y + brick.height) - (state.ball.y - state.ball.radius));
+                    const minimumOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+
+                    if (minimumOverlap === overlapLeft || minimumOverlap === overlapRight) {
+                        state.ball.vx *= -1;
+                    } else {
+                        state.ball.vy *= -1;
+                    }
+
+                    const sectionProgress = state.progress.get(brick.projectId);
+
+                    if (sectionProgress) {
+                        sectionProgress.remaining -= 1;
+
+                        if (sectionProgress.remaining <= 0) {
+                            revealProject(brick.projectId);
+                        }
+                    }
+
+                    updateHud();
+                    break;
+                }
+            }
+
+            function updateGame() {
+                state.paddle.x = clamp(
+                    state.paddle.x + state.paddle.dx,
+                    16,
+                    width - state.paddle.width - 16
+                );
+
+                if (state.ball.stuck) {
+                    placeBallOnPaddle();
+                    return;
+                }
+
+                if (!state.running) {
+                    return;
+                }
+
+                state.ball.x += state.ball.vx;
+                state.ball.y += state.ball.vy;
+
+                if (state.ball.x - state.ball.radius <= 0) {
+                    state.ball.x = state.ball.radius;
+                    state.ball.vx *= -1;
+                }
+
+                if (state.ball.x + state.ball.radius >= width) {
+                    state.ball.x = width - state.ball.radius;
+                    state.ball.vx *= -1;
+                }
+
+                if (state.ball.y - state.ball.radius <= 0) {
+                    state.ball.y = state.ball.radius;
+                    state.ball.vy *= -1;
+                }
+
+                const ballBottom = state.ball.y + state.ball.radius;
+                const ballTop = state.ball.y - state.ball.radius;
+                const paddleTop = state.paddle.y;
+                const paddleBottom = state.paddle.y + state.paddle.height;
+                const paddleLeft = state.paddle.x;
+                const paddleRight = state.paddle.x + state.paddle.width;
+
+                if (
+                    ballBottom >= paddleTop &&
+                    ballTop <= paddleBottom &&
+                    state.ball.x >= paddleLeft &&
+                    state.ball.x <= paddleRight &&
+                    state.ball.vy > 0
+                ) {
+                    const relativeImpact = (state.ball.x - (paddleLeft + (state.paddle.width / 2))) / (state.paddle.width / 2);
+                    const angle = relativeImpact * (Math.PI / 3);
+                    const currentSpeed = Math.min(8.8, Math.hypot(state.ball.vx, state.ball.vy) + 0.1);
+
+                    state.ball.vx = currentSpeed * Math.sin(angle);
+                    state.ball.vy = -Math.abs(currentSpeed * Math.cos(angle));
+                    state.ball.y = paddleTop - state.ball.radius - 1;
+                }
+
+                handleBrickCollision();
+
+                if (state.ball.y - state.ball.radius > height) {
+                    loseLife();
+                }
+            }
+
+            function loop() {
+                updateGame();
+                drawScene();
+                window.requestAnimationFrame(loop);
+            }
+
+            canvas.addEventListener('pointermove', event => {
+                syncPaddle(event.clientX);
+            });
+
+            canvas.addEventListener('pointerdown', event => {
+                syncPaddle(event.clientX);
+
+                if (state.completed && (state.lives <= 0 || state.revealed.size === state.filteredProjects.length)) {
+                    resetRound();
+                }
+
+                launchBall();
+                canvas.focus();
+            });
+
+            canvas.addEventListener('keydown', event => {
+                if (["ArrowLeft", "ArrowRight", " ", "Spacebar"].includes(event.key) || event.code === 'Space') {
+                    event.preventDefault();
+                }
+
+                if (event.key === 'ArrowLeft') {
+                    state.paddle.dx = -state.paddle.speed;
+                }
+
+                if (event.key === 'ArrowRight') {
+                    state.paddle.dx = state.paddle.speed;
+                }
+
+                if (event.key === ' ' || event.key === 'Spacebar' || event.code === 'Space' || event.key === 'Enter') {
+                    if (state.completed && (state.lives <= 0 || state.revealed.size === state.filteredProjects.length)) {
+                        resetRound();
+                    }
+
+                    launchBall();
+                }
+            });
+
+            canvas.addEventListener('keyup', event => {
+                if ((event.key === 'ArrowLeft' && state.paddle.dx < 0) || (event.key === 'ArrowRight' && state.paddle.dx > 0)) {
+                    state.paddle.dx = 0;
+                }
+            });
+
+            startButton.addEventListener('click', () => {
+                if (state.completed && (state.lives <= 0 || state.revealed.size === state.filteredProjects.length)) {
+                    resetRound();
+                }
+
+                launchBall();
+                canvas.focus();
+            });
+
+            resetButton.addEventListener('click', () => {
+                resetRound();
+                canvas.focus();
+            });
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    setFilter(button.dataset.filter);
+                });
+            });
+
+            const projectShell = document.querySelector('.projects-shell');
+
+            if (projectShell) {
+                projectShell.style.opacity = '0';
+                projectShell.style.transform = 'translateY(30px)';
+                projectShell.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+
+                const shellObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                });
+
+                shellObserver.observe(projectShell);
+            }
+
+            setFilter('all');
+            drawScene();
+            loop();
+        })();
     </script>
 </body>
 </html>
